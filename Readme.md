@@ -22,7 +22,7 @@
 - 🖼️ [**Minimal desktop app**](#) - A minimal desktop app for getting frameless screenshots
 
 <p align="center">
-<img  src="https://github.com/halitsever/shotscreen-browser/blob/main/src/assets/ss.png?raw=true"/>
+<img  src="/assets/screenshot.png"/>
 </p>
 
 <a align="center" >
