@@ -12,6 +12,13 @@
 </p>
 <p align="center">
 <a align="center" href="https://halitsever.github.io/shotscreen-browser">Download</a>
+</p>
+
+> **macOS — First Launch**  
+> Gatekeeper will block the app on first open. Run this once in Terminal after moving it to Applications:
+> ```bash
+> xattr -cr "/Applications/Shotscreen Browser.app"
+> ```
   </p>
 </p>
 
