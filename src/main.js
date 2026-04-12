@@ -32,6 +32,86 @@ if (require("electron-squirrel-startup")) {
 }
 updateElectronApp();
 
+// Register IPC handlers once — outside createWindow to avoid duplicate registration
+// on macOS when the app is re-activated and createWindow is called again.
+ipcMain.on("go-to-website", (event, targetUrl) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  win?.loadURL(targetUrl);
+});
+
+ipcMain.on("resize-window", (event, dimensions) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  win?.setSize(dimensions.width, dimensions.height, true);
+});
+
+ipcMain.handle("is-first-launch", async () => {
+  const config = await readConfig();
+  return !config.onboardingComplete;
+});
+
+ipcMain.handle("complete-onboarding", async () => {
+  const config = await readConfig();
+  config.onboardingComplete = true;
+  await writeConfig(config);
+});
+
+ipcMain.handle("capture-screenshot", async (event) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  const image = await win.webContents.capturePage();
+  const fileName = `shotscreen-${new Date()
+    .toISOString()
+    .replace(/[:.]/g, "-")}.png`;
+
+  const { canceled, filePath } = await dialog.showSaveDialog(win, {
+    title: "Save screenshot",
+    defaultPath: path.join(app.getPath("pictures"), fileName),
+    filters: [{ name: "PNG Image", extensions: ["png"] }],
+  });
+
+  if (canceled || !filePath) {
+    return { canceled: true };
+  }
+
+  await fs.writeFile(filePath, image.toPNG());
+  return { canceled: false, filePath };
+});
+
+ipcMain.handle("capture-screenshot-raw", async (event) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  const image = await win.webContents.capturePage();
+  return image.toPNG().toString("base64");
+});
+
+ipcMain.handle("capture-webview-raw", async (_event, webContentsId) => {
+  const wc = webContents.fromId(webContentsId);
+  if (!wc) throw new Error("WebContents not found");
+  const image = await wc.capturePage();
+  return image.toPNG().toString("base64");
+});
+
+ipcMain.handle("save-screenshot", async (event, dataUrl) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  const base64 = dataUrl.replace(/^data:image\/png;base64,/, "");
+  const buffer = Buffer.from(base64, "base64");
+
+  const fileName = `shotscreen-${new Date()
+    .toISOString()
+    .replace(/[:.]/g, "-")}.png`;
+
+  const { canceled, filePath } = await dialog.showSaveDialog(win, {
+    title: "Save screenshot",
+    defaultPath: path.join(app.getPath("pictures"), fileName),
+    filters: [{ name: "PNG Image", extensions: ["png"] }],
+  });
+
+  if (canceled || !filePath) {
+    return { canceled: true };
+  }
+
+  await fs.writeFile(filePath, buffer);
+  return { canceled: false, filePath };
+});
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -45,79 +125,6 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
       webviewTag: true,
     },
-  });
-
-  ipcMain.on("go-to-website", (event, targetUrl) => {
-    mainWindow.loadURL(targetUrl);
-  });
-
-  ipcMain.on("resize-window", (event, dimensions) => {
-    mainWindow.setSize(dimensions.width, dimensions.height, true);
-  });
-
-  ipcMain.handle("is-first-launch", async () => {
-    const config = await readConfig();
-    return !config.onboardingComplete;
-  });
-
-  ipcMain.handle("complete-onboarding", async () => {
-    const config = await readConfig();
-    config.onboardingComplete = true;
-    await writeConfig(config);
-  });
-
-  ipcMain.handle("capture-screenshot", async () => {
-    const image = await mainWindow.webContents.capturePage();
-    const fileName = `shotscreen-${new Date()
-      .toISOString()
-      .replace(/[:.]/g, "-")}.png`;
-
-    const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
-      title: "Save screenshot",
-      defaultPath: path.join(app.getPath("pictures"), fileName),
-      filters: [{ name: "PNG Image", extensions: ["png"] }],
-    });
-
-    if (canceled || !filePath) {
-      return { canceled: true };
-    }
-
-    await fs.writeFile(filePath, image.toPNG());
-    return { canceled: false, filePath };
-  });
-
-  ipcMain.handle("capture-screenshot-raw", async () => {
-    const image = await mainWindow.webContents.capturePage();
-    return image.toPNG().toString("base64");
-  });
-
-  ipcMain.handle("capture-webview-raw", async (_event, webContentsId) => {
-    const wc = webContents.fromId(webContentsId);
-    if (!wc) throw new Error("WebContents not found");
-    const image = await wc.capturePage();
-    return image.toPNG().toString("base64");
-  });
-
-  ipcMain.handle("save-screenshot", async (_event, dataUrl) => {
-    const base64 = dataUrl.replace(/^data:image\/png;base64,/, "");
-    const buffer = Buffer.from(base64, "base64");
-
-    const fileName = `shotscreen-${new Date()
-      .toISOString()
-      .replace(/[:.]/g, "-")}.png`;
-
-    const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
-      title: "Save screenshot",
-      defaultPath: path.join(app.getPath("pictures"), fileName),
-      filters: [{ name: "PNG Image", extensions: ["png"] }],
-    });
-
-    if (canceled || !filePath) {
-      return { canceled: true };
-    }
-
-    await fs.writeFile(filePath, buffer);
-    return { canceled: false, filePath };
   });
 
   // and load the index.html of the app.
