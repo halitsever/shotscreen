@@ -7,13 +7,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
       height,
       width,
     }),
-  captureScreenshot: () => ipcRenderer.invoke("capture-screenshot"),
-  onToggleOverlay: (callback) => {
-    const listener = () => callback();
-    ipcRenderer.on("toggle-overlay", listener);
-
-    return () => {
-      ipcRenderer.removeListener("toggle-overlay", listener);
-    };
-  },
+  captureWebviewRaw: (webContentsId) =>
+    ipcRenderer.invoke("capture-webview-raw", webContentsId),
+  saveScreenshot: (dataUrl) => ipcRenderer.invoke("save-screenshot", dataUrl),
 });

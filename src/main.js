@@ -4,6 +4,7 @@ const {
   dialog,
   globalShortcut,
   ipcMain,
+  webContents,
 } = require("electron");
 const { updateElectronApp } = require("update-electron-app");
 const path = require("node:path");
@@ -19,9 +20,12 @@ updateElectronApp();
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    titleBarStyle: "customButtonsOnHover",
+    width: 1220,
+    height: 800,
+    minWidth: 600,
+    minHeight: 400,
+    titleBarStyle: "hiddenInset",
+    trafficLightPosition: { x: 12, y: 12 },
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       webviewTag: true,
@@ -56,6 +60,40 @@ const createWindow = () => {
     return { canceled: false, filePath };
   });
 
+  ipcMain.handle("capture-screenshot-raw", async () => {
+    const image = await mainWindow.webContents.capturePage();
+    return image.toPNG().toString("base64");
+  });
+
+  ipcMain.handle("capture-webview-raw", async (_event, webContentsId) => {
+    const wc = webContents.fromId(webContentsId);
+    if (!wc) throw new Error("WebContents not found");
+    const image = await wc.capturePage();
+    return image.toPNG().toString("base64");
+  });
+
+  ipcMain.handle("save-screenshot", async (_event, dataUrl) => {
+    const base64 = dataUrl.replace(/^data:image\/png;base64,/, "");
+    const buffer = Buffer.from(base64, "base64");
+
+    const fileName = `shotscreen-${new Date()
+      .toISOString()
+      .replace(/[:.]/g, "-")}.png`;
+
+    const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, {
+      title: "Save screenshot",
+      defaultPath: path.join(app.getPath("pictures"), fileName),
+      filters: [{ name: "PNG Image", extensions: ["png"] }],
+    });
+
+    if (canceled || !filePath) {
+      return { canceled: true };
+    }
+
+    await fs.writeFile(filePath, buffer);
+    return { canceled: false, filePath };
+  });
+
   // and load the index.html of the app.
   logger.info(`Dev server url: ${MAIN_WINDOW_VITE_DEV_SERVER_URL}`);
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
@@ -73,14 +111,6 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow();
 
-  globalShortcut.register("CommandOrControl+Shift+O", () => {
-    const focusedWindow =
-      BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
-
-    if (focusedWindow) {
-      focusedWindow.webContents.send("toggle-overlay");
-    }
-  });
 
   logger.success("App ready!");
   // On OS X it's common to re-create a window in the app when the

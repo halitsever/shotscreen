@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo {
+.drag {
   -webkit-app-region: drag;
 }
 
-.title-bar {
-  height: 100px;
-  -webkit-app-region: drag;
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+@layer components {
+  .input {
+    @apply rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-100
+           placeholder:text-zinc-600
+           focus:border-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-600
+           transition-colors;
+  }
+
+  .btn-outline {
+    @apply rounded-md border border-zinc-800 bg-transparent px-3 py-1.5 text-xs font-medium
+           text-zinc-300 transition-colors
+           hover:border-zinc-700 hover:bg-zinc-900 hover:text-zinc-100;
+  }
 }

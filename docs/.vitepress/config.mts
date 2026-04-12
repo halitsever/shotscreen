@@ -14,7 +14,7 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/' },
       { text: 'Download', link: '/download' }
     ],
 
