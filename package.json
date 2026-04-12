@@ -43,6 +43,9 @@
     "email": "halitsever@protonmail.com"
   },
   "license": "MIT",
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.14.0"
+  },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "logmoji": "^1.0.4",
