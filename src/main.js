@@ -11,6 +11,21 @@ const path = require("node:path");
 const fs = require("node:fs/promises");
 const logger = require("logmoji")();
 
+const configPath = path.join(app.getPath("userData"), "config.json");
+
+const readConfig = async () => {
+  try {
+    const data = await fs.readFile(configPath, "utf-8");
+    return JSON.parse(data);
+  } catch {
+    return {};
+  }
+};
+
+const writeConfig = async (config) => {
+  await fs.writeFile(configPath, JSON.stringify(config));
+};
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -38,6 +53,17 @@ const createWindow = () => {
 
   ipcMain.on("resize-window", (event, dimensions) => {
     mainWindow.setSize(dimensions.width, dimensions.height, true);
+  });
+
+  ipcMain.handle("is-first-launch", async () => {
+    const config = await readConfig();
+    return !config.onboardingComplete;
+  });
+
+  ipcMain.handle("complete-onboarding", async () => {
+    const config = await readConfig();
+    config.onboardingComplete = true;
+    await writeConfig(config);
   });
 
   ipcMain.handle("capture-screenshot", async () => {
