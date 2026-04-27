@@ -26,23 +26,13 @@ const writeConfig = async (config) => {
   await fs.writeFile(configPath, JSON.stringify(config));
 };
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 updateElectronApp();
 
-// Register IPC handlers once — outside createWindow to avoid duplicate registration
-// on macOS when the app is re-activated and createWindow is called again.
-ipcMain.on("go-to-website", (event, targetUrl) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  win?.loadURL(targetUrl);
-});
-
-ipcMain.on("resize-window", (event, dimensions) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  win?.setSize(dimensions.width, dimensions.height, true);
-});
+let mainWindow = null;
+let registeredWebviewId = null;
 
 ipcMain.handle("is-first-launch", async () => {
   const config = await readConfig();
@@ -55,80 +45,67 @@ ipcMain.handle("complete-onboarding", async () => {
   await writeConfig(config);
 });
 
-ipcMain.handle("capture-screenshot", async (event) => {
+ipcMain.handle("save-screenshot", async (event, dataUrl, opts = {}) => {
   const win = BrowserWindow.fromWebContents(event.sender);
-  const image = await win.webContents.capturePage();
-  const fileName = `shotscreen-${new Date()
-    .toISOString()
-    .replace(/[:.]/g, "-")}.png`;
-
-  const { canceled, filePath } = await dialog.showSaveDialog(win, {
-    title: "Save screenshot",
-    defaultPath: path.join(app.getPath("pictures"), fileName),
-    filters: [{ name: "PNG Image", extensions: ["png"] }],
-  });
-
-  if (canceled || !filePath) {
-    return { canceled: true };
-  }
-
-  await fs.writeFile(filePath, image.toPNG());
-  return { canceled: false, filePath };
-});
-
-ipcMain.handle("capture-screenshot-raw", async (event) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  const image = await win.webContents.capturePage();
-  return image.toPNG().toString("base64");
-});
-
-ipcMain.handle("capture-webview-raw", async (_event, webContentsId) => {
-  const wc = webContents.fromId(webContentsId);
-  if (!wc) throw new Error("WebContents not found");
-  const image = await wc.capturePage();
-  return image.toPNG().toString("base64");
-});
-
-ipcMain.handle("save-screenshot", async (event, dataUrl) => {
-  const win = BrowserWindow.fromWebContents(event.sender);
-  const base64 = dataUrl.replace(/^data:image\/png;base64,/, "");
+  const fmt = (opts.format || "PNG").toUpperCase();
+  const ext = fmt === "JPG" ? "jpg" : fmt.toLowerCase();
+  const mime = fmt === "JPG" ? "jpeg" : fmt.toLowerCase();
+  const base64 = dataUrl.replace(new RegExp(`^data:image/${mime};base64,`), "");
   const buffer = Buffer.from(base64, "base64");
 
   const fileName = `shotscreen-${new Date()
     .toISOString()
-    .replace(/[:.]/g, "-")}.png`;
+    .replace(/[:.]/g, "-")}.${ext}`;
 
   const { canceled, filePath } = await dialog.showSaveDialog(win, {
     title: "Save screenshot",
     defaultPath: path.join(app.getPath("pictures"), fileName),
-    filters: [{ name: "PNG Image", extensions: ["png"] }],
+    filters: [{ name: `${fmt} Image`, extensions: [ext] }],
   });
 
-  if (canceled || !filePath) {
-    return { canceled: true };
-  }
+  if (canceled || !filePath) return { canceled: true };
 
   await fs.writeFile(filePath, buffer);
   return { canceled: false, filePath };
 });
 
+ipcMain.on("register-webview", (_, id) => {
+  registeredWebviewId = id;
+});
+
+
+ipcMain.handle("capture-webview", async (_, opts = {}) => {
+  if (!registeredWebviewId) throw new Error("No webview registered");
+  const wc = webContents.fromId(registeredWebviewId);
+  if (!wc) throw new Error("WebContents not found");
+  const image = await wc.capturePage();
+  const fmt = (opts.format || "PNG").toUpperCase();
+  if (fmt === "JPG") return image.toJPEG(92).toString("base64");
+  if (fmt === "WEBP") return image.toWebP(92).toString("base64");
+  return image.toPNG().toString("base64");
+});
+
+const preload = path.join(__dirname, "preload.js");
+
 const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1220,
+  mainWindow = new BrowserWindow({
+    width: 1280,
     height: 800,
-    minWidth: 600,
-    minHeight: 400,
+    minWidth: 800,
+    minHeight: 600,
     titleBarStyle: "hiddenInset",
-    trafficLightPosition: { x: 12, y: 12 },
+    backgroundColor: "#1a1a1d",
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      preload,
       webviewTag: true,
     },
   });
 
-  // and load the index.html of the app.
-  logger.info(`Dev server url: ${MAIN_WINDOW_VITE_DEV_SERVER_URL}`);
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+    registeredWebviewId = null;
+  });
+
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
@@ -138,16 +115,15 @@ const createWindow = () => {
   }
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
 
+  globalShortcut.register("CmdOrCtrl+Shift+S", () => {
+    mainWindow?.webContents.send("trigger-capture");
+  });
 
   logger.success("App ready!");
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -155,9 +131,6 @@ app.whenReady().then(() => {
   });
 });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
@@ -167,6 +140,3 @@ app.on("window-all-closed", () => {
 app.on("will-quit", () => {
   globalShortcut.unregisterAll();
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

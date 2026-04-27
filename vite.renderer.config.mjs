@@ -1,3 +1,4 @@
+import path from "node:path";
 import { defineConfig } from "vite";
 import { pluginExposeRenderer } from "./vite.base.config.mjs";
 import vue from "@vitejs/plugin-vue";
@@ -16,6 +17,11 @@ export default defineConfig((env) => {
     base: "./",
     build: {
       outDir: `.vite/renderer/${name}`,
+      rollupOptions: {
+        input: {
+          main_window: path.join(root, "index.html"),
+        },
+      },
     },
     plugins: [vue(), pluginExposeRenderer(name)],
     resolve: {

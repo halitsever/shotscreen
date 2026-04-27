@@ -2,13 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.drag {
-  -webkit-app-region: drag;
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.no-drag {
-  -webkit-app-region: no-drag;
+:root {
+  --accent: #FF453A;
 }
+
+.drag   { -webkit-app-region: drag; }
+.no-drag { -webkit-app-region: no-drag; }
 
 @layer components {
   .input {
@@ -17,7 +24,6 @@
            focus:border-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-600
            transition-colors;
   }
-
   .btn-outline {
     @apply rounded-md border border-zinc-800 bg-transparent px-3 py-1.5 text-xs font-medium
            text-zinc-300 transition-colors
