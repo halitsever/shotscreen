@@ -1,11 +1,4 @@
-const {
-  app,
-  BrowserWindow,
-  dialog,
-  globalShortcut,
-  ipcMain,
-  webContents,
-} = require("electron");
+const { app, BrowserWindow, dialog, globalShortcut, ipcMain, webContents } = require("electron");
 const { updateElectronApp } = require("update-electron-app");
 const path = require("node:path");
 const fs = require("node:fs/promises");
@@ -53,9 +46,7 @@ ipcMain.handle("save-screenshot", async (event, dataUrl, opts = {}) => {
   const base64 = dataUrl.replace(new RegExp(`^data:image/${mime};base64,`), "");
   const buffer = Buffer.from(base64, "base64");
 
-  const fileName = `shotscreen-${new Date()
-    .toISOString()
-    .replace(/[:.]/g, "-")}.${ext}`;
+  const fileName = `shotscreen-${new Date().toISOString().replace(/[:.]/g, "-")}.${ext}`;
 
   const { canceled, filePath } = await dialog.showSaveDialog(win, {
     title: "Save screenshot",
@@ -72,7 +63,6 @@ ipcMain.handle("save-screenshot", async (event, dataUrl, opts = {}) => {
 ipcMain.on("register-webview", (_, id) => {
   registeredWebviewId = id;
 });
-
 
 ipcMain.handle("capture-webview", async (_, opts = {}) => {
   if (!registeredWebviewId) throw new Error("No webview registered");
@@ -109,9 +99,7 @@ const createWindow = () => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(
-      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
-    );
+    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 };
 

@@ -10,11 +10,11 @@ import { VPButton } from 'vitepress/theme'
 This page and github only source for downloading shotscreen
 :::
 
-<VPButton text="Download from GH Releases" href="https://github.com/halitsever/shotscreen-browser/releases" />
+<VPButton text="Download from GH Releases" href="https://github.com/halitsever/shotscreen/releases" />
 
 ## macOS — First Launch
 
-Because Shotscreen Browser is not distributed through the Mac App Store, macOS Gatekeeper will block it on the first run with a *"can't be opened because it is from an unidentified developer"* message.
+Because Shotscreen Browser is not distributed through the Mac App Store, macOS Gatekeeper will block it on the first run with a _"can't be opened because it is from an unidentified developer"_ message.
 
 Run this command **once** in Terminal after moving the app to your Applications folder:
 

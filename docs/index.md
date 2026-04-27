@@ -13,7 +13,7 @@ hero:
       link: /download
     - theme: alt
       text: Source Code
-      link: https://github.com/halitsever/shotscreen-browser
+      link: https://github.com/halitsever/shotscreen
 
 features:
   - title: Frameless Window
@@ -32,9 +32,9 @@ After launching Shotscreen Browser you will see a blank, frameless window with t
 
 The overlay is your control center. Toggle it at any time with the keyboard shortcut:
 
-| Platform | Shortcut |
-| -------- | -------- |
-| macOS    | `⌘ Shift O` |
+| Platform        | Shortcut       |
+| --------------- | -------------- |
+| macOS           | `⌘ Shift O`    |
 | Windows / Linux | `Ctrl Shift O` |
 
 ### Navigating to a Website
@@ -67,7 +67,7 @@ For the cleanest result, resize the window to your target dimensions before capt
 
 ### Keyboard Shortcut Reference
 
-| Action | Shortcut |
-| ------ | -------- |
-| Toggle overlay | `⌘ Shift O` / `Ctrl Shift O` |
-| Visit URL (when overlay is open) | `Enter` in the URL field |
+| Action                           | Shortcut                     |
+| -------------------------------- | ---------------------------- |
+| Toggle overlay                   | `⌘ Shift O` / `Ctrl Shift O` |
+| Visit URL (when overlay is open) | `Enter` in the URL field     |

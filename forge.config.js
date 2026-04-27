@@ -8,7 +8,7 @@ module.exports = {
       config: {
         repository: {
           owner: "halitsever",
-          name: "shotscreen-browser",
+          name: "shotscreen",
         },
         prerelease: false,
         draft: true,

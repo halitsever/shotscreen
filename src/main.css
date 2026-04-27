@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #app {
+html,
+body,
+#app {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -11,11 +13,15 @@ html, body, #app {
 }
 
 :root {
-  --accent: #FF453A;
+  --accent: #ff453a;
 }
 
-.drag   { -webkit-app-region: drag; }
-.no-drag { -webkit-app-region: no-drag; }
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
 
 @layer components {
   .input {

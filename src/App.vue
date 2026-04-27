@@ -1,9 +1,5 @@
 <template>
-  <Transition
-    enter-from-class="opacity-0"
-    enter-active-class="transition-opacity duration-300"
-    mode="out-in"
-  >
+  <Transition enter-from-class="opacity-0" enter-active-class="transition-opacity duration-300" mode="out-in">
     <OnboardingView v-if="showOnboarding" key="onboarding" @done="showOnboarding = false" />
     <MainView v-else key="main" />
   </Transition>

@@ -11,8 +11,8 @@ const createWindow = () => {
     height: 600,
     titleBarStyle: "customButtonsOnHover",
     webPreferences: {
-      preload: path.join(__dirname, "preload.js")
-    }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
   ipcMain.on("go-to-website", (event, targetUrl) => {
     mainWindow.loadURL(targetUrl);
