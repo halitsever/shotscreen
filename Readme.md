@@ -4,7 +4,7 @@
 <img src="https://halitsever-api.vercel.app/api/repo-title?title=Shotscreen">
 
 <p align="center">
-🖼️ A frameless browser based on electron.js for getting nice screenshots<br>
+🌐 a browser designed for clean screenshots<br>
 <br/>
 <br/>
 <img src="https://img.shields.io/github/sponsors/halitsever"/> 
