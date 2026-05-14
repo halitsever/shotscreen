@@ -245,6 +245,14 @@
             <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
           </svg>
         </button>
+        <button :class="['dock-icon', opts.roundCorners && 'on']" data-tooltip="Round screenshot corners" @click="opts.roundCorners = !opts.roundCorners">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9V6a3 3 0 0 1 3-3h3" />
+            <path d="M15 3h3a3 3 0 0 1 3 3v3" />
+            <path d="M21 15v3a3 3 0 0 1-3 3h-3" />
+            <path d="M9 21H6a3 3 0 0 1-3-3v-3" />
+          </svg>
+        </button>
         <button :class="['dock-icon', opts.hideCookies && 'on']" data-tooltip="Hide cookie banners" @click="toggleCookies">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3a9 9 0 1 0 9 9c-2.5 0-5-1-5-4 0-3-3-3-4-5z" />
@@ -307,6 +315,8 @@ const THUMB_COLORS = [
   "linear-gradient(135deg,#43e97b,#38f9d7)",
 ];
 
+const FRAME_RADIUS = { soft: 8, lifted: 14, sharp: 0 };
+
 const prefs = reactive({
   accent: "#FF453A",
   stageBg: "studio",
@@ -337,6 +347,7 @@ const opts = reactive({
   noAnim: true,
   format: "PNG",
   dpr: 2,
+  roundCorners: true,
 });
 const shots = ref([]);
 const stageSize = reactive({ w: window.innerWidth, h: window.innerHeight });
@@ -488,6 +499,35 @@ const cycleDelay = () => {
   opts.delay = next[opts.delay] ?? 0;
 };
 
+const applyBorderRadius = (base64, mime, radius) => {
+  if (radius === 0 || mime === "jpeg") return Promise.resolve(base64);
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      const r = radius, w = img.width, h = img.height;
+      ctx.beginPath();
+      ctx.moveTo(r, 0);
+      ctx.lineTo(w - r, 0);
+      ctx.arcTo(w, 0, w, r, r);
+      ctx.lineTo(w, h - r);
+      ctx.arcTo(w, h, w - r, h, r);
+      ctx.lineTo(r, h);
+      ctx.arcTo(0, h, 0, h - r, r);
+      ctx.lineTo(0, r);
+      ctx.arcTo(0, 0, r, 0, r);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(img, 0, 0);
+      resolve(canvas.toDataURL(`image/${mime}`, 0.92).replace(/^data:image\/[^;]+;base64,/, ""));
+    };
+    img.src = `data:image/${mime};base64,${base64}`;
+  });
+};
+
 const handleCapture = async () => {
   const wv = webviewRef.value;
   if (!wv) return;
@@ -558,7 +598,9 @@ const handleCapture = async () => {
 
     const fmt = opts.format.toLowerCase();
     const mime = fmt === "jpg" ? "jpeg" : fmt;
-    const result = await window.electronAPI.saveScreenshot(`data:image/${mime};base64,${raw}`, { format: opts.format });
+    const radius = opts.roundCorners ? (FRAME_RADIUS[prefs.frameStyle] ?? 8) * opts.dpr : 0;
+    const finalRaw = await applyBorderRadius(raw, mime, radius);
+    const result = await window.electronAPI.saveScreenshot(`data:image/${mime};base64,${finalRaw}`, { format: opts.format });
 
     if (!result.canceled) {
       const name = (() => {
