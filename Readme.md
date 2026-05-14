@@ -14,6 +14,8 @@
 <a align="center" href="https://halitsever.github.io/shotscreen">Download</a>
 </p>
 
+<p align="center" href="https://www.producthunt.com/products/shotscreen-browser-for-screenshots?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-shotscreen-browser-for-screenshots" target="_blank" rel="noopener noreferrer"><img alt="Shotscreen | Browser for screenshots - Take clean, beautiful screenshots of any website | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1146560&amp;theme=light&amp;t=1778728139309"></p>
+
 > **macOS — First Launch**  
 > Gatekeeper will block the app on first open. Run this once in Terminal after moving it to Applications:
 >
