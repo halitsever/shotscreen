@@ -4,7 +4,7 @@
     <div class="stage" ref="stageRef">
       <div class="stage-bg" />
       <div class="stage-content" :style="{ transform: `scale(${scale})` }">
-        <div class="frm" :data-style="prefs.frameStyle" :style="{ width: vp.w + 'px', height: vp.h + 'px' }">
+        <div class="frm" :data-style="prefs.frameStyle" :style="{ width: vp.w + 'px', height: vp.h + 'px', '--frame-radius': prefs.cornerRadius + 'px' }">
           <div class="frm-inner">
             <webview ref="webviewRef" :src="url" allowpopups style="flex: 1; width: 100%; min-height: 0" />
           </div>
@@ -40,6 +40,46 @@
 
     <!-- top right -->
     <div class="corner corner-tr">
+      <div class="settings-wrap">
+        <button :class="['ico-btn', showSettings && 'on']" @click.stop="showSettings = !showSettings" title="Settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+        <div v-if="showSettings" class="settings-pop" @click.stop>
+          <div class="settings-h">Settings</div>
+          <div class="settings-row">
+            <div class="settings-row-label">
+              <span>Corner Radius</span>
+              <span class="settings-row-val">{{ prefs.cornerRadius }}px</span>
+            </div>
+            <div class="settings-slider-wrap">
+              <span class="settings-slider-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="1" />
+                </svg>
+              </span>
+              <input
+                type="range"
+                class="settings-slider"
+                min="0"
+                max="32"
+                step="2"
+                v-model.number="prefs.cornerRadius"
+              />
+              <span class="settings-slider-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="6" />
+                </svg>
+              </span>
+            </div>
+            <div class="settings-presets">
+              <button v-for="p in [{ label: 'None', v: 0 }, { label: 'Soft', v: 8 }, { label: 'Round', v: 16 }, { label: 'Full', v: 24 }]" :key="p.v" :class="['settings-preset', prefs.cornerRadius === p.v && 'on']" @click="prefs.cornerRadius = p.v">{{ p.label }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="hist-wrap">
         <button :class="['ico-btn', showHist && 'on']" @click.stop="toggleHist" title="Recent shots">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -315,12 +355,11 @@ const THUMB_COLORS = [
   "linear-gradient(135deg,#43e97b,#38f9d7)",
 ];
 
-const FRAME_RADIUS = { soft: 8, lifted: 14, sharp: 0 };
-
 const prefs = reactive({
   accent: "#FF453A",
   stageBg: "studio",
   frameStyle: "soft",
+  cornerRadius: 24,
   dockExpanded: true,
   showCommandHint: true,
   captureLabel: "Capture",
@@ -336,6 +375,7 @@ const countdown = ref(0);
 const nowTick = ref(Date.now());
 const canGoBack = ref(false);
 const showHist = ref(false);
+const showSettings = ref(false);
 const showVpMenu = ref(false);
 const editingUrl = ref(false);
 const urlDraft = ref("");
@@ -427,9 +467,8 @@ const handleWindowClick = (e) => {
   if (vpMenuRef.value && !vpMenuRef.value.contains(e.target)) {
     showVpMenu.value = false;
   }
-  if (showHist.value) {
-    showHist.value = false;
-  }
+  if (showHist.value) showHist.value = false;
+  if (showSettings.value) showSettings.value = false;
 };
 
 const selectViewport = (id) => {
@@ -598,7 +637,7 @@ const handleCapture = async () => {
 
     const fmt = opts.format.toLowerCase();
     const mime = fmt === "jpg" ? "jpeg" : fmt;
-    const radius = opts.roundCorners ? (FRAME_RADIUS[prefs.frameStyle] ?? 8) * opts.dpr : 0;
+    const radius = opts.roundCorners ? prefs.cornerRadius * opts.dpr : 0;
     const finalRaw = await applyBorderRadius(raw, mime, radius);
     const result = await window.electronAPI.saveScreenshot(`data:image/${mime};base64,${finalRaw}`, { format: opts.format });
 
@@ -775,21 +814,21 @@ const onKeydown = (e) => {
     height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .frm[data-style="soft"] {
-  border-radius: 8px;
+  border-radius: var(--frame-radius, 24px);
   box-shadow:
     0 0 0 0.5px rgba(255, 255, 255, 0.08),
     0 30px 80px rgba(0, 0, 0, 0.55),
     0 12px 32px rgba(0, 0, 0, 0.35);
 }
 .frm[data-style="lifted"] {
-  border-radius: 14px;
+  border-radius: var(--frame-radius, 24px);
   box-shadow:
     0 0 0 0.5px rgba(255, 255, 255, 0.1),
     0 50px 120px -20px rgba(0, 0, 0, 0.7),
     0 20px 50px -10px rgba(0, 0, 0, 0.45);
 }
 .frm[data-style="sharp"] {
-  border-radius: 0;
+  border-radius: var(--frame-radius, 24px);
   box-shadow:
     0 0 0 0.5px rgba(255, 255, 255, 0.12),
     0 30px 80px rgba(0, 0, 0, 0.55);
@@ -1020,8 +1059,112 @@ const onKeydown = (e) => {
   justify-content: center;
   border: 1.5px solid #1a1a1d;
 }
-.hist-wrap {
+.hist-wrap,
+.settings-wrap {
   position: relative;
+}
+
+/* settings popover */
+.settings-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: rgba(28, 28, 32, 0.85);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 0.5px rgba(255, 255, 255, 0.05) inset;
+  padding: 6px;
+  z-index: 10;
+  color: white;
+  -webkit-app-region: no-drag;
+  cursor: default;
+}
+.settings-h {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 8px 10px 6px;
+}
+.settings-row {
+  padding: 4px 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.settings-row-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+.settings-row-val {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+.settings-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings-slider-icon {
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.settings-slider {
+  flex: 1;
+  height: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+}
+.settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+.settings-presets {
+  display: flex;
+  gap: 4px;
+}
+.settings-preset {
+  flex: 1;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  border: 0.5px solid transparent;
+}
+.settings-preset:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.settings-preset.on {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* popovers */
