@@ -12,7 +12,7 @@ This page and github only source for downloading shotscreen
 
 <VPButton text="Download from GH Releases" href="https://github.com/halitsever/shotscreen/releases" />
 
-## macOS — First Launch
+## macOS - First Launch
 
 Because Shotscreen Browser is not distributed through the Mac App Store, macOS Gatekeeper will block it on the first run with a _"can't be opened because it is from an unidentified developer"_ message.
 

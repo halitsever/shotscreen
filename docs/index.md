@@ -6,7 +6,7 @@ hero:
     src: /logo.png
   name: "Shotscreen Browser"
   text: "Frameless Browser for macOS"
-  tagline: Take clean, beautiful screenshots of any website — no distractions, no chrome.
+  tagline: Take clean, beautiful screenshots of any website - no distractions, no chrome.
   actions:
     - theme: brand
       text: Download
@@ -17,57 +17,115 @@ hero:
 
 features:
   - title: Frameless Window
-    details: The browser window has no toolbar or address bar — your screenshot contains only the website, nothing else.
-  - title: Overlay Panel
-    details: A floating, draggable control panel lets you navigate, resize the window, and capture screenshots without cluttering the view.
-  - title: Rounded Corners
-    details: Saved screenshots automatically get rounded corners, giving them a polished, modern look.
+    details: No toolbar, no title bar - your screenshot contains only the website and nothing else.
+  - title: Adjustable Corner Radius
+    details: Choose from presets or dial in an exact radius (0–32 px) from the Settings panel. Default is 24 px for a polished, modern look.
+  - title: Viewport Presets
+    details: Instantly switch between iPhone, iPad, MacBook, Desktop, Ultrawide, or type any custom size.
+  - title: Full-Page Capture
+    details: Capture the entire scroll height of a page - not just the visible viewport - in one shot.
+  - title: Dark Mode
+    details: Force any website into dark mode before capturing without changing your system preference.
+  - title: Cookie Banner Hiding
+    details: Automatically hides GDPR/cookie consent overlays so they never appear in your screenshots.
 ---
 
-## Getting Started
+## Interface Overview
 
-After launching Shotscreen Browser you will see a blank, frameless window with the overlay panel open in the center.
+When you launch Shotscreen Browser you'll see three main UI elements:
 
-### Opening & Closing the Overlay
+| Element | Location | Purpose |
+|---|---|---|
+| **Address bar** | Top, center | Navigate to a URL |
+| **Dock** | Bottom, center | All capture controls |
+| **Settings / History** | Top right | Corner radius settings & recent shots |
 
-The overlay is your control center. Toggle it at any time with the keyboard shortcut:
+---
 
-| Platform        | Shortcut       |
-| --------------- | -------------- |
-| macOS           | `⌘ Shift O`    |
-| Windows / Linux | `Ctrl Shift O` |
+## Navigating to a Website
 
-### Navigating to a Website
+Click the address bar at the top of the window, type or paste a URL (the `https://` prefix is added automatically if omitted), then press `Enter`.
 
-1. Open the overlay.
-2. Type or paste a URL into the **Website** field (e.g. `example.com` — the `https://` prefix is added automatically).
-3. Press `Enter` or click **Visit**.
+The host and path are displayed separately in the bar while browsing. Click the **×** button on the right to clear and reset to a blank page.
 
-The webview loads the page immediately. The URL field stays in sync as you navigate within the page.
+---
 
-### Resizing the Window
+## The Dock
 
-Use the **Resize** section to set an exact pixel size for the window before taking a screenshot — useful when you need a specific viewport (e.g. `1200 × 800` for a desktop mockup).
+The dock sits at the bottom of the window and contains every capture control.
 
-1. Enter the desired **Width** and **Height**.
-2. Click **Apply Resize**.
+### Navigation
 
-### Taking a Screenshot
+| Button | Action |
+|---|---|
+| ← | Go back one page |
+| ↺ | Reload the current page |
 
-1. Navigate to the page you want to capture.
-2. Open the overlay and click **Take Screenshot**.  
-   The overlay disappears while the capture runs so it is not included in the image.
-3. A save dialog opens — choose a location and confirm.
+### Viewport
 
-The exported PNG has **rounded corners** (12 px radius) applied automatically.
+Click the **device pill** (e.g. *MacBook Air 1280×800*) to open the viewport menu. Choose a preset or enter a custom width and height and click **Use**.
 
-::: tip
-For the cleanest result, resize the window to your target dimensions before capturing.
-:::
+| Preset | Width × Height |
+|---|---|
+| iPhone 15 | 393 × 852 |
+| iPhone 15 Pro Max | 430 × 932 |
+| iPad | 820 × 1180 |
+| iPad Pro 13″ | 1024 × 1366 |
+| MacBook Air | 1280 × 800 |
+| Desktop | 1440 × 900 |
+| Ultrawide | 1920 × 1080 |
 
-### Keyboard Shortcut Reference
+### Capture Mode
 
-| Action                           | Shortcut                     |
-| -------------------------------- | ---------------------------- |
-| Toggle overlay                   | `⌘ Shift O` / `Ctrl Shift O` |
-| Visit URL (when overlay is open) | `Enter` in the URL field     |
+Two mode buttons sit in a segmented control:
+
+| Mode | Description |
+|---|---|
+| **Viewport** | Captures only the visible area |
+| **Full Page** | Expands the webview to the full scroll height before capturing |
+
+### Capture Options
+
+| Button | What it does |
+|---|---|
+| **Delay** | Cycles through 0 → 3 → 5 → 10 s countdown before capture |
+| **Dark Mode** | Injects a CSS filter to force dark mode on the page |
+| **Round Corners** | Applies the corner radius (set in Settings) to the saved image |
+| **Hide Cookies** | Hides cookie / GDPR consent banners |
+
+### Capture Button
+
+Click **Capture** (or press `⌘ ⇧ S`) to take a screenshot. A save dialog will appear so you can choose where to save the file.
+
+---
+
+## Settings - Corner Radius
+
+Click the **⚙ gear icon** in the top-right corner to open the Settings panel.
+
+The **Corner Radius** control lets you choose how rounded the edges of your saved screenshots are:
+
+| Preset | Radius |
+|---|---|
+| None | 0 px |
+| Soft | 8 px |
+| Round | 16 px |
+| Full | 24 px *(default)* |
+
+You can also drag the slider for any value between 0 and 32 px. The current value is shown next to the label in real time.
+
+> Corner rounding is only applied to the saved file - it is not visible in the live preview window.
+
+---
+
+## Shot History
+
+Click the **clock icon** in the top-right corner to view recent captures. Each entry shows the site name, dimensions, and a timestamp. Click the **copy** button on any row to copy its file path to the clipboard.
+
+---
+
+## Keyboard Shortcut
+
+| Action | Shortcut |
+|---|---|
+| Capture screenshot | `⌘ ⇧ S` |
