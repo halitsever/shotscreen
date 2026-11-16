@@ -1,32 +1,7 @@
-import path from "node:path";
 import { defineConfig } from "vite";
-import { pluginExposeRenderer } from "./vite.base.config.mjs";
 import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config
-export default defineConfig((env) => {
-  /** @type {import('vite').ConfigEnv<'renderer'>} */
-  const forgeEnv = env;
-  const { root, mode, forgeConfigSelf } = forgeEnv;
-  const name = forgeConfigSelf.name ?? "";
-
-  /** @type {import('vite').UserConfig} */
-  return {
-    root,
-    mode,
-    base: "./",
-    build: {
-      outDir: `.vite/renderer/${name}`,
-      rollupOptions: {
-        input: {
-          main_window: path.join(root, "index.html"),
-        },
-      },
-    },
-    plugins: [vue(), pluginExposeRenderer(name)],
-    resolve: {
-      preserveSymlinks: true,
-    },
-    clearScreen: false,
-  };
+export default defineConfig({
+  plugins: [vue()],
 });

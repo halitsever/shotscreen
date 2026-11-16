@@ -75,7 +75,7 @@ ipcMain.handle("capture-webview", async (_, opts = {}) => {
   return image.toPNG().toString("base64");
 });
 
-const preload = path.join(__dirname, "preload.js");
+const preload = path.join(__dirname, "preload.cjs");
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
