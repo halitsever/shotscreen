@@ -1,0 +1,15 @@
+# Shotscreen Browser
+
+> Shotscreen Browser is a frameless desktop browser for clean website screenshots on macOS, built with Electron and Vue. It has viewport presets, full-page capture, rounded corners, forced dark mode and cookie banner hiding.
+
+Download the macOS build from https://github.com/halitsever/shotscreen/releases and move it to Applications. Gatekeeper blocks the first launch, so run `xattr -cr "/Applications/Shotscreen Browser.app"` once. Press Cmd+Shift+S to capture.
+
+## Docs
+
+- [Guide](https://halitsever.github.io/shotscreen/): the interface, viewport presets, capture modes and options, corner radius settings, shot history and the keyboard shortcut
+- [Download](https://halitsever.github.io/shotscreen/download.html): where to download and how to get past Gatekeeper on first launch
+
+## Optional
+
+- [Source](https://github.com/halitsever/shotscreen): repository
+- [Releases](https://github.com/halitsever/shotscreen/releases): downloads
