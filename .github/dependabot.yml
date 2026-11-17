@@ -14,6 +14,10 @@ updates:
       npm-major:
         patterns: ["*"]
         update-types: [major]
+    ignore:
+      # Tailwind 4 needs a PostCSS and config migration.
+      - dependency-name: tailwindcss
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
