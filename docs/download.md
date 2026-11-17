@@ -1,3 +1,7 @@
+---
+description: Download Shotscreen Browser for macOS from GitHub Releases and open it for the first time.
+---
+
 <script setup>
 import { VPButton } from 'vitepress/theme'
 
