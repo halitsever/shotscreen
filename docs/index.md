@@ -1,5 +1,6 @@
 ---
 layout: home
+titleTemplate: Frameless Browser for Website Screenshots on macOS
 
 hero:
   image:
