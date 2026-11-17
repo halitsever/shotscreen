@@ -76,6 +76,10 @@ typings/
 # vuepress build output
 .vuepress/dist
 
+# vitepress build output and cache
+docs/.vitepress/dist
+docs/.vitepress/cache
+
 # Serverless directories
 .serverless/
 
