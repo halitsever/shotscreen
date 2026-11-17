@@ -10,8 +10,7 @@ Electron and Vue desktop app: a frameless browser for clean website screenshots,
 
 ## Gotchas
 
-- `package-lock.json` is out of sync with `package.json` on `main` (react, loose-envify and js-tokens are missing), so `npm ci` fails and CI with it. Fixing it needs a lockfile refresh, which the owner should approve. Until then, install with `npm install` and do not commit the lockfile it rewrites.
-- `docs/.vitepress/dist/` and `docs/.vitepress/cache/` are not in `.gitignore`. Delete them after a local build instead of committing them.
+- Use npm 10.9 or newer, as CI does (Node LTS ships npm 11). Electron Forge refuses older npm, and npm 9 reads the lockfile as out of sync (react, loose-envify and js-tokens missing). Do not regenerate the lockfile with an old npm.
 - The window content is an Electron `<webview>` in `src/views/Main.vue`; capture goes through `src/preload.js` IPC to `src/main.js`. Changes to capture touch all three.
 - `updateElectronApp()` in `src/main.js` updates installed apps from GitHub releases, so a published release reaches users directly.
 - `npm run publish` uses the Electron Forge GitHub publisher, which creates a draft release. The version comes from `package.json`.
