@@ -3,21 +3,37 @@ import { defineConfig } from "vitepress";
 const site = "https://halitsever.github.io/shotscreen/";
 const description = "Shotscreen Browser is a free, frameless browser for taking clean website screenshots on Mac, with viewport presets and full-page capture.";
 
+const license = "https://opensource.org/licenses/MIT";
+const author = { "@type": "Person", name: "Halit Sever", url: "https://github.com/halitsever" };
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Shotscreen Browser",
-  description,
-  url: site,
-  image: `${site}og.png`,
-  applicationCategory: "DesignApplication",
-  operatingSystem: "macOS",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  downloadUrl: "https://github.com/halitsever/shotscreen/releases",
-  codeRepository: "https://github.com/halitsever/shotscreen",
-  programmingLanguage: ["Vue", "JavaScript"],
-  license: "https://opensource.org/licenses/MIT",
-  author: { "@type": "Person", name: "Halit Sever", url: "https://github.com/halitsever" },
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${site}#app`,
+      name: "Shotscreen Browser",
+      description,
+      url: site,
+      image: `${site}og.png`,
+      applicationCategory: "DesignApplication",
+      operatingSystem: "macOS",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      downloadUrl: "https://github.com/halitsever/shotscreen/releases",
+      license,
+      author,
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": `${site}#source`,
+      name: "Shotscreen Browser",
+      codeRepository: "https://github.com/halitsever/shotscreen",
+      programmingLanguage: ["Vue", "JavaScript"],
+      license,
+      author,
+      targetProduct: { "@id": `${site}#app` },
+    },
+  ],
 };
 
 export default defineConfig({
