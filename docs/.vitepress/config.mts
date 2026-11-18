@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 
 const site = "https://halitsever.github.io/shotscreen/";
-const description = "Shotscreen Browser - Frameless Browser For Screenshots, get cool web screenshots on macOS.";
+const description = "Shotscreen Browser is a free, frameless browser for taking clean website screenshots on Mac, with viewport presets and full-page capture.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@ export default defineConfig({
 
   transformPageData(pageData) {
     const url = site + pageData.relativePath.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, ".html");
-    const title = pageData.frontmatter.layout === "home" ? "Shotscreen Browser" : `${pageData.title} | Shotscreen Browser`;
+    const title = pageData.frontmatter.layout === "home" ? `Shotscreen Browser | ${pageData.frontmatter.titleTemplate}` : `${pageData.title} | Shotscreen Browser`;
     pageData.frontmatter.head ??= [];
     pageData.frontmatter.head.push(
       ["link", { rel: "canonical", href: url }],

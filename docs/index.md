@@ -1,13 +1,14 @@
 ---
 layout: home
-titleTemplate: Frameless Browser for Website Screenshots on macOS
+titleTemplate: Website Screenshot App for Mac
+description: Take website screenshots on Mac with Shotscreen Browser, a free frameless browser with viewport presets, full-page capture, rounded corners and dark mode.
 
 hero:
   image:
     src: /logo.png
   name: "Shotscreen Browser"
-  text: "Frameless Browser for macOS"
-  tagline: Take clean, beautiful screenshots of any website - no distractions, no chrome.
+  text: "Website Screenshots on Mac"
+  tagline: A frameless browser that takes clean, beautiful screenshots of any website, with no toolbar or window frame in the shot.
   actions:
     - theme: brand
       text: Download
