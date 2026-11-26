@@ -4,7 +4,7 @@
 <img src="https://halitsever-api.vercel.app/api/repo-title?title=Shotscreen">
 
 <p align="center">
-🌐 Shotscreen Browser: a frameless desktop browser for taking clean website screenshots on a Mac, with viewport presets, full-page capture, rounded corners and dark mode. Built with Electron and Vue.<br>
+Shotscreen Browser: a frameless desktop browser for taking clean website screenshots on a Mac, with viewport presets, full-page capture, rounded corners and dark mode. Built with Electron and Vue.<br>
 <br/>
 <br/>
 <img src="https://img.shields.io/github/sponsors/halitsever" alt="GitHub Sponsors"/> 
@@ -30,7 +30,7 @@
 <img src="https://halitsever-api.vercel.app/api/details"/>
 </a>
 
-- 🖼️ [**Minimal desktop app**](#) - A minimal desktop app for getting frameless screenshots
+- [**Minimal desktop app**](#) - A minimal desktop app for getting frameless screenshots
 - [**Frameless window**](https://halitsever.github.io/shotscreen/) - no toolbar and no title bar, so the screenshot contains only the website.
 - [**Viewport presets**](https://halitsever.github.io/shotscreen/#viewport) - switch between iPhone, iPad, MacBook, Desktop and Ultrawide sizes, or type a custom size.
 - [**Full-page capture**](https://halitsever.github.io/shotscreen/#capture-mode) - capture the whole scroll height of a page in one shot.
