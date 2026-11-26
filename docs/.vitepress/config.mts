@@ -43,6 +43,8 @@ export default defineConfig({
   base: "/shotscreen/",
   sitemap: { hostname: site },
   head: [
+    /** Cloudflare Web Analytics, one token for every page on halitsever.github.io. */
+    ["script", { defer: "", src: "https://static.cloudflareinsights.com/beacon.min.js", "data-cf-beacon": '{"token": "dd7e54d3f48841c187d72d9dbb92a6b6"}' }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:site_name", content: "Shotscreen Browser" }],
     ["meta", { property: "og:image", content: `${site}og.png` }],
