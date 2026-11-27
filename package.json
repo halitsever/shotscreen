@@ -49,11 +49,5 @@
     "logmoji": "^1.0.4",
     "update-electron-app": "^3.0.0",
     "vue": "^3.4.21"
-  },
-  "overrides": {
-    "vitepress": {
-      "vite": "$vite",
-      "@vitejs/plugin-vue": "$@vitejs/plugin-vue"
-    }
   }
 }
