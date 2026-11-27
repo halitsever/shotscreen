@@ -1,6 +1,6 @@
 import { defineConfig } from "vitepress";
 
-const site = "https://halitsever.github.io/shotscreen/";
+const site = "https://projects.halit.org/shotscreen/";
 const description = "Shotscreen Browser is a free, frameless browser for taking clean website screenshots on Mac, with viewport presets and full-page capture.";
 
 const license = "https://opensource.org/licenses/MIT";
@@ -33,7 +33,7 @@ export default defineConfig({
   base: "/shotscreen/",
   sitemap: { hostname: site },
   head: [
-    /** Cloudflare Web Analytics, one token for every page on halitsever.github.io. */
+    /** Cloudflare Web Analytics, one token for every page on projects.halit.org. */
     ["script", { defer: "", src: "https://static.cloudflareinsights.com/beacon.min.js", "data-cf-beacon": '{"token": "dd7e54d3f48841c187d72d9dbb92a6b6"}' }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:site_name", content: "Shotscreen Browser" }],

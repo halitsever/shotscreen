@@ -18,7 +18,7 @@ Electron and Vue desktop app: a frameless browser for clean website screenshots,
 
 ## Docs and site
 
-- VitePress site in `docs/`, base `/shotscreen/`, deployed to https://halitsever.github.io/shotscreen/ by `.github/workflows/docs.yaml` (uses `npm install`) on every push to `main`.
+- VitePress site in `docs/`, base `/shotscreen/`, deployed to https://projects.halit.org/shotscreen/ by `.github/workflows/docs.yaml` (uses `npm install`) on every push to `main`.
 - `cleanUrls` is off, so pages are served as `.html`. Canonical URLs, Open Graph tags and JSON-LD are set in `docs/.vitepress/config.mts`.
 - `docs/public/llms.txt` lists the docs pages; update it when a page is added or renamed.
 
