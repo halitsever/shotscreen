@@ -11,7 +11,7 @@ Shotscreen Browser: a frameless desktop browser for taking clean website screens
 <img src="https://img.shields.io/github/license/halitsever/shotscreen" alt="License"/> 
 </p>
 <p align="center">
-<a align="center" href="https://halitsever.github.io/shotscreen">Download</a>
+<a align="center" href="https://projects.halit.org/shotscreen">Download</a>
 </p>
 
 <p align="center"><a href="https://www.producthunt.com/products/shotscreen-browser-for-screenshots?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-shotscreen-browser-for-screenshots"><img alt="Shotscreen | Browser for screenshots - Take clean, beautiful screenshots of any website | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1146560&amp;theme=light&amp;t=1778728139309"></a></p>
@@ -31,12 +31,12 @@ Shotscreen Browser: a frameless desktop browser for taking clean website screens
 </a>
 
 - [**Minimal desktop app**](#) - A minimal desktop app for getting frameless screenshots
-- [**Frameless window**](https://halitsever.github.io/shotscreen/) - no toolbar and no title bar, so the screenshot contains only the website.
-- [**Viewport presets**](https://halitsever.github.io/shotscreen/#viewport) - switch between iPhone, iPad, MacBook, Desktop and Ultrawide sizes, or type a custom size.
-- [**Full-page capture**](https://halitsever.github.io/shotscreen/#capture-mode) - capture the whole scroll height of a page in one shot.
-- [**Rounded corners**](https://halitsever.github.io/shotscreen/#settings-corner-radius) - pick a preset or any radius from 0 to 32 px for the saved image.
-- [**Dark mode and cookie banner hiding**](https://halitsever.github.io/shotscreen/#capture-options) - force a site into dark mode and hide cookie consent overlays before capturing.
-- [**Shot history and shortcut**](https://halitsever.github.io/shotscreen/#shot-history) - see recent captures and take a screenshot with `⌘ ⇧ S`.
+- [**Frameless window**](https://projects.halit.org/shotscreen/) - no toolbar and no title bar, so the screenshot contains only the website.
+- [**Viewport presets**](https://projects.halit.org/shotscreen/#viewport) - switch between iPhone, iPad, MacBook, Desktop and Ultrawide sizes, or type a custom size.
+- [**Full-page capture**](https://projects.halit.org/shotscreen/#capture-mode) - capture the whole scroll height of a page in one shot.
+- [**Rounded corners**](https://projects.halit.org/shotscreen/#settings-corner-radius) - pick a preset or any radius from 0 to 32 px for the saved image.
+- [**Dark mode and cookie banner hiding**](https://projects.halit.org/shotscreen/#capture-options) - force a site into dark mode and hide cookie consent overlays before capturing.
+- [**Shot history and shortcut**](https://projects.halit.org/shotscreen/#shot-history) - see recent captures and take a screenshot with `⌘ ⇧ S`.
 
 <p align="center">
 <img  src="/assets/screenshot.png" alt="Shotscreen Browser window with the capture dock"/>
@@ -46,7 +46,7 @@ Shotscreen Browser: a frameless desktop browser for taking clean website screens
 <img src="https://halitsever-api.vercel.app/api/installation"/>
 </a>
 
-Download the latest macOS build from [GitHub Releases](https://github.com/halitsever/shotscreen/releases). The [download page](https://halitsever.github.io/shotscreen/download.html) covers the first launch.
+Download the latest macOS build from [GitHub Releases](https://github.com/halitsever/shotscreen/releases). The [download page](https://projects.halit.org/shotscreen/download.html) covers the first launch.
 
 Install packages:
 

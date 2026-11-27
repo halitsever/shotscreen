@@ -6,8 +6,8 @@ Download the macOS build from https://github.com/halitsever/shotscreen/releases 
 
 ## Docs
 
-- [Guide](https://halitsever.github.io/shotscreen/): the interface, viewport presets, capture modes and options, corner radius settings, shot history and the keyboard shortcut
-- [Download](https://halitsever.github.io/shotscreen/download.html): where to download and how to get past Gatekeeper on first launch
+- [Guide](https://projects.halit.org/shotscreen/): the interface, viewport presets, capture modes and options, corner radius settings, shot history and the keyboard shortcut
+- [Download](https://projects.halit.org/shotscreen/download.html): where to download and how to get past Gatekeeper on first launch
 
 ## Optional
 
