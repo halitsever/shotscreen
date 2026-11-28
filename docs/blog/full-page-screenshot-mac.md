@@ -2,13 +2,13 @@
 title: "How to Take a Full Page Screenshot on Mac"
 titleTemplate: false
 description: "Take a full page screenshot on Mac in Safari, Chrome or Firefox with no extension, or in one step with a frameless browser, and what goes wrong on long pages."
-headline: "How to take a full page screenshot on Mac"
+headline: "Full page screenshots on a Mac in Safari, Chrome and Firefox"
 date: "2026-11-28"
 keyword: "how to take a full page screenshot on mac"
 faq: [{"q": "Can a Mac take a scrolling screenshot?", "a": "Not with the built-in Screenshot app. Use Safari's Web Inspector, Chrome DevTools, Firefox's Take Screenshot or an app such as Shotscreen Browser."}, {"q": "Where does Chrome save a full size screenshot?", "a": "In your Downloads folder, as a PNG named after the page."}]
 ---
 
-# How to take a full page screenshot on Mac
+# Full page screenshots on a Mac in Safari, Chrome and Firefox
 
 <p class="post-meta">By <a href="https://halit.org">Halit Sever</a> · <time datetime="2026-11-28">28 November 2026</time></p>
 

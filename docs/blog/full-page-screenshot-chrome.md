@@ -2,13 +2,13 @@
 title: "Full Page Screenshot in Chrome Without an Extension"
 titleTemplate: false
 description: "Chrome can take a full page screenshot with no extension: DevTools has Capture full size screenshot. Steps for Mac and Windows, phone sizes and pitfalls."
-headline: "Full page screenshot in Chrome without an extension"
+headline: "Chrome's built-in full page screenshot, no extension needed"
 date: "2026-11-28"
 keyword: "full page screenshot chrome"
 faq: [{"q": "Does Chrome have a full page screenshot?", "a": "Yes. Open DevTools, press Command-Shift-P (Ctrl-Shift-P on Windows), type screenshot and choose Capture full size screenshot."}, {"q": "Why is part of my Chrome full page screenshot blank?", "a": "The page loads some images only when you scroll to them. Scroll to the bottom and back before capturing."}]
 ---
 
-# Full page screenshot in Chrome without an extension
+# Chrome's built-in full page screenshot, no extension needed
 
 <p class="post-meta">By <a href="https://halit.org">Halit Sever</a> · <time datetime="2026-11-28">28 November 2026</time></p>
 
