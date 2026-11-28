@@ -24,6 +24,46 @@ const jsonLd = {
   ],
 };
 
+/** BlogPosting, breadcrumbs and, when the post shows an FAQ, FAQPage data for a blog post. */
+function postJsonLd(fm: Record<string, any>, url: string) {
+  const person = { ...author, url: "https://halit.org" };
+  const graph: object[] = [
+    {
+      "@type": "BlogPosting",
+      headline: fm.headline ?? fm.title,
+      description: fm.description,
+      url,
+      mainEntityOfPage: url,
+      datePublished: fm.date,
+      dateModified: fm.date,
+      inLanguage: "en",
+      image: `${site}og.png`,
+      keywords: fm.keyword,
+      author: person,
+      publisher: person,
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Shotscreen Browser", item: site },
+        { "@type": "ListItem", position: 2, name: "Blog", item: `${site}blog/` },
+        { "@type": "ListItem", position: 3, name: fm.headline ?? fm.title, item: url },
+      ],
+    },
+  ];
+  if (fm.faq?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: fm.faq.map((f: { q: string; a: string }) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>|`/g, "") },
+      })),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
+}
+
 export default defineConfig({
   /** keeps the page hash map out of every page's HTML, which Semrush reads as a low text-to-HTML ratio */
   metaChunk: true,
@@ -35,7 +75,6 @@ export default defineConfig({
   head: [
     /** Cloudflare Web Analytics, one token for every page on projects.halit.org. */
     ["script", { defer: "", src: "https://static.cloudflareinsights.com/beacon.min.js", "data-cf-beacon": '{"token": "dd7e54d3f48841c187d72d9dbb92a6b6"}' }],
-    ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:site_name", content: "Shotscreen Browser" }],
     ["meta", { property: "og:image", content: `${site}og.png` }],
     ["meta", { property: "og:image:width", content: "1280" }],
@@ -45,10 +84,14 @@ export default defineConfig({
   ],
 
   transformPageData(pageData) {
+    const fm = pageData.frontmatter;
     const url = site + pageData.relativePath.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, ".html");
-    const title = pageData.frontmatter.layout === "home" ? `Shotscreen Browser | ${pageData.frontmatter.titleTemplate}` : `${pageData.title} | Shotscreen Browser`;
-    pageData.frontmatter.head ??= [];
-    pageData.frontmatter.head.push(
+    const title =
+      fm.layout === "home" ? `Shotscreen Browser | ${fm.titleTemplate}` : fm.titleTemplate === false ? fm.title : `${pageData.title} | Shotscreen Browser`;
+    fm.head ??= [];
+    fm.head.push(["meta", { property: "og:type", content: fm.date ? "article" : "website" }]);
+    if (fm.date) fm.head.push(["script", { type: "application/ld+json" }, JSON.stringify(postJsonLd(fm, url))]);
+    fm.head.push(
       ["link", { rel: "canonical", href: url }],
       ["meta", { property: "og:url", content: url }],
       ["meta", { property: "og:title", content: title }],
@@ -64,7 +107,27 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/" },
       { text: "Download", link: "/download" },
+      { text: "Blog", link: "/blog/" },
     ],
+
+    sidebar: {
+      "/blog/": [
+        {
+          text: "Mac screenshot guides",
+          items: [
+            { text: "All posts", link: "/blog/" },
+            { text: "Mac screenshot shortcuts", link: "/blog/mac-screenshot-shortcuts" },
+            { text: "Where screenshots go", link: "/blog/where-do-screenshots-go-on-mac" },
+            { text: "Crop a screenshot", link: "/blog/how-to-crop-a-screenshot-on-mac" },
+            { text: "Full page screenshot on Mac", link: "/blog/full-page-screenshot-mac" },
+            { text: "Full page screenshot in Chrome", link: "/blog/full-page-screenshot-chrome" },
+            { text: "Higher resolution screenshots", link: "/blog/higher-resolution-screenshot-mac" },
+            { text: "Print screen on a Mac", link: "/blog/print-screen-on-mac" },
+            { text: "Can a website detect screenshots?", link: "/blog/can-a-website-detect-screenshots" },
+          ],
+        },
+      ],
+    },
 
     socialLinks: [{ icon: "github", link: "https://github.com/halitsever/shotscreen" }],
   },
