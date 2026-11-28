@@ -32,6 +32,12 @@ features:
     details: Automatically hides GDPR/cookie consent overlays so they never appear in your screenshots.
 ---
 
+## No Mac at hand?
+
+For a quick capture of the visible part of a page, the [online website screenshot tool](/website-screenshot/) takes a URL and returns a PNG in your browser. It uses a free shared endpoint limited to 7 requests per 10 minutes, and it has no full-page, dark mode or cookie banner options. For those, use the app.
+
+---
+
 ## Interface Overview
 
 When you launch Shotscreen Browser you'll see three main UI elements:
