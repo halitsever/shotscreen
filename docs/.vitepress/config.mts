@@ -24,6 +24,18 @@ const jsonLd = {
   ],
 };
 
+/** FAQPage data for the questions a page shows in its FAQ section. */
+function faqJsonLd(faq: { q: string; a: string }[]) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>|`/g, "") },
+    })),
+  };
+}
+
 /** BlogPosting, breadcrumbs and, when the post shows an FAQ, FAQPage data for a blog post. */
 function postJsonLd(fm: Record<string, any>, url: string) {
   const person = { ...author, url: "https://halit.org" };
@@ -51,16 +63,7 @@ function postJsonLd(fm: Record<string, any>, url: string) {
       ],
     },
   ];
-  if (fm.faq?.length) {
-    graph.push({
-      "@type": "FAQPage",
-      mainEntity: fm.faq.map((f: { q: string; a: string }) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>|`/g, "") },
-      })),
-    });
-  }
+  if (fm.faq?.length) graph.push(faqJsonLd(fm.faq));
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
@@ -91,6 +94,7 @@ export default defineConfig({
     fm.head ??= [];
     fm.head.push(["meta", { property: "og:type", content: fm.date ? "article" : "website" }]);
     if (fm.date) fm.head.push(["script", { type: "application/ld+json" }, JSON.stringify(postJsonLd(fm, url))]);
+    else if (fm.faq?.length) fm.head.push(["script", { type: "application/ld+json" }, JSON.stringify({ "@context": "https://schema.org", ...faqJsonLd(fm.faq) })]);
     fm.head.push(
       ["link", { rel: "canonical", href: url }],
       ["meta", { property: "og:url", content: url }],
@@ -107,6 +111,7 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/" },
       { text: "Download", link: "/download" },
+      { text: "Online tool", link: "/website-screenshot/" },
       { text: "Blog", link: "/blog/" },
     ],
 
