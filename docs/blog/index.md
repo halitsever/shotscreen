@@ -1,7 +1,7 @@
 ---
-title: "Mac Screenshot Guides: Shortcuts, Saving, Cropping"
+title: "Mac Screenshot Guides: Shortcuts, Saving, Fixes"
 titleTemplate: false
-description: "Guides to screenshots on Mac: every shortcut, where screenshots are saved, cropping, full-page and high-resolution captures, and what websites can detect."
+description: "Guides to screenshots on Mac: shortcuts, the Snipping Tool equivalent, copy and paste, where files go, cropping, full-page captures and fixes when it fails."
 ---
 
 # Mac screenshot guides
@@ -39,3 +39,27 @@ There is no Print Screen key on a Mac. The shortcuts that replace it, what happe
 ## [Can a website detect screenshots?](/blog/can-a-website-detect-screenshots)
 
 A website cannot see a screenshot you take with your operating system. What a page can notice (keys, focus, DevTools, page changes) and what it cannot.
+
+## [Is there a Snipping Tool on Mac?](/blog/snipping-tool-mac)
+
+Macs have no Snipping Tool, but the built-in Screenshot app does the same jobs. Each Snipping Tool mode and shortcut, matched to its Mac equivalent.
+
+## [Copy a screenshot on Mac and paste it anywhere](/blog/copy-paste-screenshot-mac)
+
+Copy a Mac screenshot straight to the clipboard by adding Control to the shortcut, then paste it with Command-V. Also how to copy one that is already saved.
+
+## [When screenshots stop working on a Mac](/blog/screenshot-not-working-mac)
+
+Mac screenshot shortcuts doing nothing, or screenshots that never show up? Check the shortcut settings, save location, thumbnail, blocked apps and permissions.
+
+## [Delete screenshots on a Mac and keep the desktop clear](/blog/delete-screenshots-mac)
+
+Delete one screenshot from its thumbnail or Finder, remove every screenshot at once with a Finder search, and stop new ones piling up on the desktop.
+
+## [See how a website looks on a phone, from your Mac](/blog/view-mobile-version-of-website)
+
+View the mobile version of a website on a computer with Chrome, Safari or Firefox developer tools or Shotscreen's iPhone presets, and what each misses.
+
+## [Taking a screenshot on a MacBook, step by step](/blog/how-to-screenshot-on-macbook)
+
+Take a screenshot on a MacBook Air or MacBook Pro with the keyboard or the trackpad: the whole screen, one window or a selected area, and the Touch Bar.

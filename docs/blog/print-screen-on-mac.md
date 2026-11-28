@@ -65,6 +65,6 @@ Grab was replaced by the Screenshot app in macOS Mojave. It is in Applications, 
 ## Related posts
 
 - [Mac screenshot shortcuts: every key combo](/blog/mac-screenshot-shortcuts)
-- [Where do screenshots go on Mac?](/blog/where-do-screenshots-go-on-mac)
-- [How to crop a screenshot on Mac](/blog/how-to-crop-a-screenshot-on-mac)
+- [Is there a Snipping Tool on Mac?](/blog/snipping-tool-mac)
+- [Copy a screenshot on Mac and paste it anywhere](/blog/copy-paste-screenshot-mac)
 - [All posts](/blog/)

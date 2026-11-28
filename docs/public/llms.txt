@@ -9,7 +9,7 @@ Download the macOS build from https://github.com/halitsever/shotscreen/releases 
 - [Guide](https://projects.halit.org/shotscreen/): the interface, viewport presets, capture modes and options, corner radius settings, shot history and the keyboard shortcut
 - [Download](https://projects.halit.org/shotscreen/download.html): where to download and how to get past Gatekeeper on first launch
 - [Website screenshot online](https://projects.halit.org/shotscreen/website-screenshot/): paste a URL and get a PNG of the page in the browser, through the free shared shotsnap endpoint (7 requests per 10 minutes per IP address, about 1,000 a day, HTTP 429 after that)
-- [Blog](https://projects.halit.org/shotscreen/blog/): Mac screenshot guides: every shortcut, where screenshots are saved, cropping, full-page captures in Safari, Chrome and Firefox, higher resolution screenshots, Print Screen on a Mac, and whether websites can detect screenshots
+- [Blog](https://projects.halit.org/shotscreen/blog/): Mac screenshot guides: every shortcut, where screenshots are saved, cropping, full-page captures in Safari, Chrome and Firefox, higher resolution screenshots, Print Screen on a Mac, whether websites can detect screenshots, the Snipping Tool equivalent on Mac, copying and pasting screenshots, fixing screenshots that do not work, deleting screenshots, viewing the mobile version of a website and screenshots on a MacBook
 
 ## Optional
 
