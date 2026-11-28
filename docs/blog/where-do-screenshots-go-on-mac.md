@@ -74,6 +74,6 @@ Press Shift-Command-5, click Options, and choose Other Location under Save to. P
 ## Related posts
 
 - [Mac screenshot shortcuts: every key combo](/blog/mac-screenshot-shortcuts)
-- [How to crop a screenshot on Mac](/blog/how-to-crop-a-screenshot-on-mac)
-- [How to get a higher resolution screenshot on Mac](/blog/higher-resolution-screenshot-mac)
+- [When screenshots stop working on a Mac](/blog/screenshot-not-working-mac)
+- [Delete screenshots on a Mac and keep the desktop clear](/blog/delete-screenshots-mac)
 - [All posts](/blog/)

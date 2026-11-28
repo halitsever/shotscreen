@@ -77,6 +77,6 @@ Yes. Go to System Settings, Keyboard, Keyboard Shortcuts, Screenshots and set ne
 ## Related posts
 
 - [Where do screenshots go on Mac?](/blog/where-do-screenshots-go-on-mac)
-- [How to crop a screenshot on Mac](/blog/how-to-crop-a-screenshot-on-mac)
-- [How to print screen on a Mac](/blog/print-screen-on-mac)
+- [Is there a Snipping Tool on Mac?](/blog/snipping-tool-mac)
+- [Copy a screenshot on Mac and paste it anywhere](/blog/copy-paste-screenshot-mac)
 - [All posts](/blog/)
