@@ -24,7 +24,7 @@ faq: [{"q": "What is Print Screen on a Mac?", "a": "Control-Shift-Command-3 copi
 | Save the whole screen to a file | <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>3</kbd> |
 | Snipping Tool | The Screenshot app: <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>5</kbd> |
 
-Without <kbd>Control</kbd>, the screenshot is saved as a PNG file on the desktop. With it, nothing is saved and you paste the image with <kbd>Command</kbd> <kbd>V</kbd>. The full list is in [Mac screenshot shortcuts](/blog/mac-screenshot-shortcuts).
+<kbd>Shift</kbd> <kbd>Command</kbd> <kbd>3</kbd> captures the entire screen, and <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>4</kbd> lets you select the area you want, a portion of the screen. Without <kbd>Control</kbd>, the screenshot is saved as a PNG file on the desktop. With it, nothing is saved and you paste the image with <kbd>Command</kbd> <kbd>V</kbd>. The full list is in [Mac screenshot shortcuts](/blog/mac-screenshot-shortcuts).
 
 The macOS steps here were checked against Apple's [macOS User Guide](https://support.apple.com/guide/mac-help/take-screenshots-or-screen-recordings-mh26782/mac) for macOS 27 Golden Gate and [Apple's screenshot guide](https://support.apple.com/en-us/102646) in November 2026. They have worked the same way since macOS Mojave unless noted.
 
@@ -40,7 +40,7 @@ On a PC keyboard connected to a Mac, or a keyboard with spare function keys, you
 2. Choose **Screenshots**.
 3. Double-click the shortcut next to an action, such as **Copy picture of screen to the clipboard**, and press the key you want, for example F13.
 
-## Print a screenshot on paper
+## How to print a screenshot on Mac
 
 1. Double-click the screenshot to open it in Preview.
 2. Choose **File › Print**, or press <kbd>Command</kbd> <kbd>P</kbd>.

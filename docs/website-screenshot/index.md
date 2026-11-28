@@ -9,7 +9,7 @@ faq:
   - q: "Why did my screenshot fail?"
     a: "After 7 requests in 10 minutes from one IP address the endpoint answers HTTP 429 (Too Many Requests) until the window passes. A screenshot can also fail when the site is unreachable, blocks cloud browsers, or the free endpoint is down."
   - q: "Can it take a full-page screenshot?"
-    a: "No. The endpoint captures the viewport you pick. For the whole scroll height, use the Full Page mode in Shotscreen Browser or the full-size capture built into Chrome DevTools."
+    a: "No. The endpoint captures the viewport you pick. For a full page screen capture of the whole scroll height, use the Full Page mode in Shotscreen Browser or the full-size capture built into Chrome DevTools."
   - q: "What does this page store?"
     a: "Only the times of your requests, in your browser's local storage, so it can stop before the limit. The URL you enter is sent to the shotsnap endpoint, which runs on Vercel."
 ---
@@ -18,9 +18,9 @@ faq:
 import ScreenshotTool from "../.vitepress/components/ScreenshotTool.vue";
 </script>
 
-# Take a screenshot of any website from its URL
+# Take a website screenshot from any URL
 
-Paste a web address, pick a viewport size and press **Take screenshot**. A cloud browser opens the page and sends back a PNG of what it sees. There is nothing to install and no account.
+Paste a web address, pick a viewport size and press **Take screenshot**. A cloud browser opens the web page and sends back a PNG of what it sees. There is nothing to install and no account.
 
 <ScreenshotTool />
 
@@ -67,7 +67,7 @@ The window has no toolbar or title bar, so the saved image holds only the websit
 
 ## Screenshots from code
 
-If you need more than the shared limit allows, run a headless browser yourself. The shotsnap site compares the two options in [Puppeteer screenshot vs shotsnap](https://projects.halit.org/shotsnap/puppeteer-screenshot.html), with code for each.
+The endpoint behind this page is also a free [screenshot API](https://projects.halit.org/shotsnap/free-screenshot-api/): send it a URL from curl, Node.js or Python and get a PNG back, with examples for each on the shotsnap site. If you need more than the shared limit allows, run a headless browser yourself. The shotsnap site compares the two options in [Puppeteer screenshot vs shotsnap](https://projects.halit.org/shotsnap/puppeteer-screenshot.html), with code for each.
 
 ## Other ways to capture a website
 
@@ -87,7 +87,7 @@ After 7 requests in 10 minutes from one IP address the endpoint answers HTTP 429
 
 ### Can it take a full-page screenshot?
 
-No. The endpoint captures the viewport you pick. For the whole scroll height, use the Full Page mode in Shotscreen Browser or the full-size capture built into Chrome DevTools.
+No. The endpoint captures the viewport you pick. For a full page screen capture of the whole scroll height, use the Full Page mode in Shotscreen Browser or the full-size capture built into Chrome DevTools.
 
 ### What does this page store?
 

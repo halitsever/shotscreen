@@ -1,7 +1,7 @@
 ---
 title: "Where Do Screenshots Go on Mac? Find and Change It"
 titleTemplate: false
-description: "Mac screenshots are saved to the desktop by default. How to find old screenshots, change where new ones are saved, and why a screenshot sometimes is not there."
+description: "Where do screenshots go on Mac? To the desktop by default. How to find old ones, change the save location, and why one is sometimes missing."
 headline: "Where do screenshots go on Mac?"
 date: "2026-11-28"
 keyword: "where do screenshots go on mac"
@@ -16,7 +16,7 @@ faq: [{"q": "Where are screenshots saved on a Mac?", "a": "On the desktop, as PN
 
 ## The default location: the desktop
 
-Screenshots taken with the keyboard shortcuts are saved to the desktop. In Finder that is the **Desktop** folder in your home folder, `~/Desktop`. Screenshots taken from the Screenshot app (<kbd>Shift</kbd> <kbd>Command</kbd> <kbd>5</kbd>) go to the location chosen in its **Options** menu, which is also the desktop until you change it.
+Screenshots taken with the keyboard shortcuts are saved to the desktop, the default screenshots folder. In Finder that is the **Desktop** folder in your home folder, `~/Desktop`. Screenshots taken from the Screenshot app (<kbd>Shift</kbd> <kbd>Command</kbd> <kbd>5</kbd>) go to the location chosen in its **Options** menu, which is also the desktop until you change it.
 
 The macOS steps here were checked against Apple's [macOS User Guide](https://support.apple.com/guide/mac-help/take-screenshots-or-screen-recordings-mh26782/mac) for macOS 27 Golden Gate and [Apple's screenshot guide](https://support.apple.com/en-us/102646) in November 2026. They have worked the same way since macOS Mojave unless noted.
 
@@ -24,7 +24,7 @@ The macOS steps here were checked against Apple's [macOS User Guide](https://sup
 
 1. Press <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>5</kbd> to open the Screenshot app.
 2. Click **Options**.
-3. Under **Save to**, pick one of the preset places, such as Documents, Clipboard, Mail, Messages or Preview, or choose **Other Location** and select any folder.
+3. Under **Save to**, pick a new save location: one of the preset places, such as Documents, Clipboard, Mail, Messages or Preview, or choose **Other Location** and select any folder.
 
 The choice sticks for later screenshots, including those taken with <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>3</kbd> and <kbd>4</kbd>. A common setup is a **Screenshots** folder inside **Pictures**, so the desktop stays clear.
 
@@ -42,7 +42,7 @@ The last line restarts the process that handles screenshots so the change applie
 
 ## How to find screenshots on a Mac
 
-- **Search by name.** In Finder or Spotlight, search for `Screenshot`. Every screenshot's name starts with that word.
+- **Search by name.** In Finder or Spotlight, search for `Screenshot`. Every screenshot's name starts with that word, or with `Screen Shot` for those taken before macOS Ventura.
 - **Search by type.** Spotlight marks screen captures. In Spotlight or a Finder search, `kMDItemIsScreenCapture:1` lists them all, wherever they are.
 - **Recents.** Finder's **Recents** shows recently created files, newest first.
 

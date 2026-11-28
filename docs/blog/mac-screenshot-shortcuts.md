@@ -2,13 +2,13 @@
 title: "Mac Screenshot Shortcuts: Every Key Combo"
 titleTemplate: false
 description: "Every Mac screenshot shortcut in one table: Shift-Command-3, 4 and 5, window captures, copying to the clipboard instead of a file, and how to change the keys."
-headline: "Every screenshot shortcut on a Mac, and what each one captures"
+headline: "Every Mac screenshot shortcut, and what each one captures"
 date: "2026-11-28"
 keyword: "mac screenshot shortcut"
 faq: [{"q": "What is the shortcut for a screenshot on a Mac?", "a": "Shift-Command-3 captures the entire screen, Shift-Command-4 a selected area, and Shift-Command-5 opens the Screenshot app. Add Control to copy to the clipboard instead."}, {"q": "How do I screenshot only one window on a Mac?", "a": "Press Shift-Command-4, then Space, then click the window. Hold Option while clicking to leave out the window's shadow."}, {"q": "Can I change the Mac screenshot shortcut?", "a": "Yes. Go to System Settings, Keyboard, Keyboard Shortcuts, Screenshots and set new keys for each action."}]
 ---
 
-# Every screenshot shortcut on a Mac, and what each one captures
+# Every Mac screenshot shortcut, and what each one captures
 
 <p class="post-meta">By <a href="https://halit.org">Halit Sever</a> · <time datetime="2026-11-28">28 November 2026</time></p>
 
@@ -22,23 +22,23 @@ faq: [{"q": "What is the shortcut for a screenshot on a Mac?", "a": "Shift-Comma
 | <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>4</kbd>, then drag | The area you select | A file on the desktop |
 | <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>4</kbd>, then <kbd>Space</kbd>, then click | One window or the menu bar | A file on the desktop |
 | <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>5</kbd> | Opens the Screenshot app with every option | The location set in Options |
-| <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>6</kbd> | The Touch Bar, on Macs that have one | A file on the desktop |
+| <kbd>Shift</kbd> <kbd>Command</kbd> <kbd>6</kbd> | The Touch Bar, on MacBook Pro models that have one | A file on the desktop |
 | <kbd>Control</kbd> plus any of the above | The same area | The clipboard only |
 
-Press the keys together and let go. Screenshots are saved as PNG files whose names start with "Screenshot" and include the date and time.
+Press the keys together and let go. By default, screenshots save to your desktop as PNG files whose names start with "Screenshot" and include the date and time. Before macOS Ventura the names started with "Screen Shot".
 
 The macOS steps here were checked against Apple's [macOS User Guide](https://support.apple.com/guide/mac-help/take-screenshots-or-screen-recordings-mh26782/mac) for macOS 27 Golden Gate and [Apple's screenshot guide](https://support.apple.com/en-us/102646) in November 2026. They have worked the same way since macOS Mojave unless noted.
 
 ## Selecting an area: Shift-Command-4
 
-The pointer turns into a crosshair. Drag over the area you want and let go of the mouse or trackpad to take the shot.
+The pointer turns into a crosshair. Drag over the portion of the screen you want, then release the mouse or trackpad button to take the shot.
 
 - Hold <kbd>Space</kbd> while dragging to move the selection instead of resizing it.
 - Press <kbd>Esc</kbd> to cancel.
 
 ## One window: Shift-Command-4, then Space
 
-After <kbd>Space</kbd> the crosshair becomes a camera and the window under it is highlighted. Click to capture that window, with its shadow. To leave the shadow out, hold <kbd>Option</kbd> while you click.
+After <kbd>Space</kbd> the pointer turns into a camera icon and the window under it is highlighted. Click to capture that window, with its shadow. To leave the shadow out, hold <kbd>Option</kbd> while you click.
 
 ## The Screenshot app: Shift-Command-5
 

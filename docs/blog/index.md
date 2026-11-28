@@ -14,7 +14,7 @@ Every Mac screenshot shortcut in one table: Shift-Command-3, 4 and 5, window cap
 
 ## [Where do screenshots go on Mac?](/blog/where-do-screenshots-go-on-mac)
 
-Mac screenshots are saved to the desktop by default. How to find old screenshots, change where new ones are saved, and why a screenshot sometimes is not there.
+Where do screenshots go on Mac? To the desktop by default. How to find old ones, change the save location, and why one is sometimes missing.
 
 ## [How to crop a screenshot on Mac](/blog/how-to-crop-a-screenshot-on-mac)
 
