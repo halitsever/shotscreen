@@ -2,13 +2,13 @@
 title: "Mac Screenshot Shortcuts: Every Key Combo"
 titleTemplate: false
 description: "Every Mac screenshot shortcut in one table: Shift-Command-3, 4 and 5, window captures, copying to the clipboard instead of a file, and how to change the keys."
-headline: "Mac screenshot shortcuts: every key combo"
+headline: "Every screenshot shortcut on a Mac, and what each one captures"
 date: "2026-11-28"
 keyword: "mac screenshot shortcut"
 faq: [{"q": "What is the shortcut for a screenshot on a Mac?", "a": "Shift-Command-3 captures the entire screen, Shift-Command-4 a selected area, and Shift-Command-5 opens the Screenshot app. Add Control to copy to the clipboard instead."}, {"q": "How do I screenshot only one window on a Mac?", "a": "Press Shift-Command-4, then Space, then click the window. Hold Option while clicking to leave out the window's shadow."}, {"q": "Can I change the Mac screenshot shortcut?", "a": "Yes. Go to System Settings, Keyboard, Keyboard Shortcuts, Screenshots and set new keys for each action."}]
 ---
 
-# Mac screenshot shortcuts: every key combo
+# Every screenshot shortcut on a Mac, and what each one captures
 
 <p class="post-meta">By <a href="https://halit.org">Halit Sever</a> · <time datetime="2026-11-28">28 November 2026</time></p>
 

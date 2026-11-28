@@ -2,13 +2,13 @@
 title: "How to Get a Higher Resolution Screenshot on Mac"
 titleTemplate: false
 description: "Why Mac screenshots look blurry, how Retina scaling sets their pixel size, and how to get a sharper, higher resolution screenshot of the screen or a web page."
-headline: "How to get a higher resolution screenshot on Mac"
+headline: "Getting a higher resolution screenshot out of your Mac"
 date: "2026-11-28"
 keyword: "macos screenshot how can i get a higher resolution screenshot"
 faq: [{"q": "Are Mac screenshots full resolution?", "a": "Yes. A screenshot saves every pixel the display shows, as a PNG. On a Retina display that is usually twice the point size in each direction."}, {"q": "Why is my screenshot smaller on an external monitor?", "a": "Standard monitors map one point to one pixel, so a window captured there has half the width and height in pixels of the same window on a Retina screen."}]
 ---
 
-# How to get a higher resolution screenshot on Mac
+# Getting a higher resolution screenshot out of your Mac
 
 <p class="post-meta">By <a href="https://halit.org">Halit Sever</a> · <time datetime="2026-11-28">28 November 2026</time></p>
 

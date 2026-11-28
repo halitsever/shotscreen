@@ -1,4 +1,5 @@
 ---
+title: "Download"
 description: Download Shotscreen Browser for macOS from GitHub Releases and open it for the first time.
 ---
 
@@ -8,7 +9,7 @@ import { VPButton } from 'vitepress/theme'
 
 </script>
 
-# Download
+# Get Shotscreen Browser for your Mac
 
 ::: warning
 This page and the GitHub Releases page of the repository are the only official sources for Shotscreen Browser. Builds from other sites are not made by this project.
